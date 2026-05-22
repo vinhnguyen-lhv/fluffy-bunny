@@ -10,7 +10,12 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+# dnf5 install -y tmux 
+
+RELEASEVER=$(grep '^VERSION_ID=' /etc/os-release | cut -d'=' -f2)
+rpm --import https://fcitx5-lotus.pages.dev/pubkey.gpg
+dnf config-manager addrepo --from-repofile=https://fcitx5-lotus.pages.dev/rpm/fedora/fcitx5-lotus-$RELEASEVER.repo
+dnf5 install -y fcitx5-lotus krusader
 
 # Use a COPR Example:
 #
@@ -21,4 +26,4 @@ dnf5 install -y tmux
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+# systemctl enable podman.socket
