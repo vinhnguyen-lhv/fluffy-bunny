@@ -19,6 +19,7 @@ rpm --import https://pkg.cloudflareclient.com/pubkey.gpg
 curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo
 dnf config-manager addrepo --from-repofile=https://fcitx5-lotus.pages.dev/rpm/fedora/fcitx5-lotus-$RELEASEVER.repo
 
+ls -la /opt/cloudflare-warp
 
 dnf5 install -y fcitx5-lotus krusader cloudflare-warp
 
