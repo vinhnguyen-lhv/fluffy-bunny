@@ -14,8 +14,13 @@ set -ouex pipefail
 
 RELEASEVER=$(grep '^VERSION_ID=' /etc/os-release | cut -d'=' -f2)
 rpm --import https://fcitx5-lotus.pages.dev/pubkey.gpg
+rpm --import https://pkg.cloudflareclient.com/pubkey.gpg
+
+curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo
 dnf config-manager addrepo --from-repofile=https://fcitx5-lotus.pages.dev/rpm/fedora/fcitx5-lotus-$RELEASEVER.repo
-dnf5 install -y fcitx5-lotus krusader
+
+
+dnf5 install -y fcitx5-lotus krusader cloudflare-warp
 
 # Use a COPR Example:
 #
